@@ -49,4 +49,5 @@ function patronShow(patron) {
     Atr.appendChild(aretheyprem);
     Atr.appendChild(money);
     document.getElementById("Main").appendChild(Atr);
+    Atr.style.textAlign = "right";
 }
