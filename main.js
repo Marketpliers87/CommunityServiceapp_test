@@ -30,11 +30,11 @@ function patronShow(patron) {
     const name = document.createElement("td");
     const aretheyprem = document.createElement("td");
     const money = document.createElement("td");
+    const btnmessage = document.getElementById("szoveg");
 
     name.textContent = patron.subscriber;    
     money.textContent = patron.paid_total + " $";
     
-
     if (patron.premium == true) {
         aretheyprem.textContent = "✅";
     }
@@ -45,9 +45,27 @@ function patronShow(patron) {
     if (patron.paid_total > 800) {
         Atr.style.backgroundColor = "goldenrod";
     }
+
+    function Toggle() {
+        if (patron.premium == true) {
+            
+            aretheyprem.textContent = "❌";
+            patron.premium = false;
+        }
+        else {
+            aretheyprem.textContent = "✅";
+            patron.premium = true;
+        }
+        btnmessage.textContent = "Sikeresen módosítottad a prémium státuszt!";
+        btnmessage.classList.add("bg-success");
+        btnmessage.style.color = "white";
+        setTimeout(() => {
+            btnmessage.textContent = "";
+        }, 5000)
+    }
     Atr.appendChild(name);
     Atr.appendChild(aretheyprem);
     Atr.appendChild(money);
     document.getElementById("Main").appendChild(Atr);
-    Atr.style.textAlign = "right";
+    aretheyprem.onclick = Toggle;
 }
